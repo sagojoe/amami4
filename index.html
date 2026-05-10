@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奄美大島 Photo Scroll</title>
+    <style>
+        /* 1. 全体の余白をゼロにする */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* 背景を黒にして没入感を出す */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. 写真のスタイル */
+        img {
+            width: 100%;       /* 画面の横幅いっぱい */
+            max-width: 100%;   /* はみ出し防止 */
+            height: auto;      /* 比率を維持 */
+            display: block;    /* 下の隙間を消す */
+            margin: 0;         /* 隙間をゼロに */
+        }
+    </style>
+</head>
+<body>
+
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    
+    </body>
+</html>
