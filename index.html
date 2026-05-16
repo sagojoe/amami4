@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amami Oshima - Monologue</title>
+    <title>Amami Oshima - Monologue (Modern Gothic)</title>
     <style>
-        /* 縦スクロールを禁止し、横スクロールのみにする */
+        /* 縦スクロールを禁止し、通常の左から右への横スクロールにする */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             background-color: #000;
-            font-family: "Yu Mincho", "YuMincho", "MS Mincho", serif;
+            /* 明朝から、洗練された現代的なプレーン・ゴシック体へ変更 */
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Segoe UI", Meiryo, sans-serif;
             overflow-y: hidden;
             overflow-x: auto;
         }
@@ -19,10 +20,11 @@
         /* 画面いっぱいの横長コンテナ */
         .wrapper {
             display: flex;
-            flex-direction: row-reverse; /* 右から左へ読み進めるため、要素を右詰めに配置 */
+            flex-direction: row;
             height: 100vh;
             width: max-content;
-            /* 3枚目の写真を画面全体に固定表示 */
+            
+            /* 3枚目の写真を背景全体に固定表示 */
             background-image: url('photo3.jpg');
             background-position: center;
             background-repeat: no-repeat;
@@ -32,33 +34,35 @@
         /* テキストを配置する大きなエリア */
         .story-container {
             display: flex;
-            flex-direction: row; /* テキストの塊を横に並べる */
+            flex-direction: row;
             align-items: center;
             height: 100vh;
-            padding: 0 10vw 0 5vw; /* 右側（読み始め）と左側の余白 */
+            padding: 0 15vw 0 15vw; /* 左右の余白をさらに広くして贅沢に空間を使う */
             box-sizing: border-box;
         }
 
-        /* 縦書きテキストのスタイル */
+        /* 縦書きテキストのスタイル（左から右へ改行していく設定） */
         .text-block {
             writing-mode: vertical-rl;
-            color: rgba(255, 255, 255, 0.75); /* 風景に溶け込む薄さ、でも読める絶妙なライン */
-            font-size: 1.8rem; /* 読みやすい大きめサイズ */
-            font-weight: bold;
-            letter-spacing: 0.3em;
-            line-height: 2.2; /* 行間を広く取ってほぼ日風に */
-            height: 75%;
-            margin-left: 8vw; /* 行の塊ごとの間隔 */
-            text-shadow: 1px 1px 15px rgba(0,0,0,0.6);
+            transform: scaleX(-1); /* 左から右へ改行させる設定 */
+            color: rgba(255, 255, 255, 0.55); /* さらにもう少し薄くして背景に馴染ませる */
+            font-size: 1.15rem; /* サイズを控えめに（標準的な小説の文字サイズ感） */
+            font-weight: 500; /* 太すぎず、細すぎず、トーンを保つ */
+            letter-spacing: 0.35em; /* 文字の間隔をゆったり広く */
+            line-height: 2.5; /* 行間をさらに広げて、文字が詰まって見えないように */
+            height: 60%; /* 縦の表示領域をキュッと絞り、上下に大きな余白を作る */
+            margin-right: 20vw; /* 塊と塊の間隔を大きくあけて、スクロールの「間」を作る */
         }
 
+        /* 反転した文字を元に戻す */
         .text-block p {
             margin: 0;
+            transform: scaleX(-1); 
             text-indent: 1em; /* 行頭の一文字下げ */
         }
         
         .text-block p.no-indent {
-            text-indent: 0; /* 改行や強調のための字下げなし */
+            text-indent: 0;
         }
     </style>
 </head>
@@ -67,20 +71,20 @@
     <div class="wrapper">
         <div class="story-container">
 
-            <!-- 塊３（一番左奥・終盤） -->
-            <div class="text-block">
-                <p>結局のところ、我々が「風景」と呼んでいるものは、網膜に映る光学的リアリティなどではなく、その実、己の内部に澱のように溜まった記憶の組み替え作業に過ぎないのではないか。だからこそ、この突き抜けた蒼さを前にして、私はただ圧倒される代わりに、かつて踏み外しそうになった細い路地の傾斜を思い出している。意味など最初からどこにも落ちていない。落ちていないからこそ、私はそれを断定しなければならないのだ。この静寂が、かつて誰かが吐き捨てた嘘の裏返しであるということを。</p>
-            </div>
-
-            <!-- 塊２（真ん中・中盤） -->
-            <div class="text-block">
-                <p>世間はすぐに「経験」という言葉を都合よく使う。何年そこに居ただとか、何を成し遂げただとか、そういった数値化できる足跡だけを拾い集めては、もっともらしい顔をして「論」を組み立てる。しかし、本当に肉体を震わせた決定的な瞬間というのは、得てしてそのような文脈の外部にある。例えば、見知らぬ波止場でふと鼻を掠めた、名前も知らぬ植物の腐臭。あるいは、他人の視線が完全に途切れた瞬間にだけ訪れる、奇妙なほど冷徹な自己肯定。そうした「無駄な断片」こそが、私の輪郭を決定づけている。</p>
-            </div>
-
-            <!-- 塊１（一番右側・ここから読み始める） -->
+            <!-- 塊１（一番左側・ここからスタート） -->
             <div class="text-block">
                 <p class="no-indent">どこへ行っても、結局は自分自身を引き摺り回しているだけに過ぎないのだ、という諦念が常に足元にへばりついている。</p>
                 <p>どれほど遠くの島へ逃れようとも、あるいはどれほど crowded な日常から距離を置こうとも、耳鳴りのように響く内省のスイッチは切ることができない。ある種の人間にとって、旅とは移動の快楽ではなく、むしろ日常という「舞台装置」を強制的に剥ぎ取られたときに露呈する、自らの身勝手な抒情性と対峙するための、極めて孤独な儀式なのである。</p>
+            </div>
+
+            <!-- 塊２（真ん中） -->
+            <div class="text-block">
+                <p>世間はすぐに「経験」という言葉を都合よく使う。何年そこに居ただとか、何を成し遂げただとか、そういった数値化できる足跡だけを拾い集めては、もっともらしい顔をして「論」を組み立てる。しかし、本当に肉体を震わせた決定的な瞬間というのは、得てしてそのような文脈の外部にある。例えば、見見知らぬ波止場でふと鼻を掠めた、名前も知らぬ植物の腐臭。あるいは、他人の視線が完全に途切れた瞬間にだけ訪れる、奇妙なほど冷徹な自己肯定。そうした「無駄な断片」こそが、私の輪郭を決定づけている。</p>
+            </div>
+
+            <!-- 塊３（一番右側） -->
+            <div class="text-block">
+                <p>結局のところ、我々が「風景」と呼んでいるものは、網膜に映る光学的リアリティなどではなく、その実、己の内部に澱のように溜まった記憶の組み替え作業に過ぎないのではないか。だからこそ、この突き抜けた蒼さを前にして、私はただ圧倒される代わりに、かつて踏み外しそうになった細い路地の傾斜を思い出している。意味など最初からどこにも落ちていない。落ちていないからこそ、私はそれを断定しなければならないのだ。この静寂が、かつて誰かが吐き捨てた嘘の裏返しであるということを。</p>
             </div>
 
         </div>
