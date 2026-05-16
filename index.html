@@ -3,58 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amami Oshima - Fixed Story</title>
+    <title>Amami Oshima - Monologue</title>
     <style>
-        /* 1. 画面全体のスクロール制御（縦を禁止、横を許可） */
+        /* 1. 全体の設定：通常の縦スクロールにする */
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
             background-color: #000;
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-            overflow-y: hidden;
-            overflow-x: auto; /* 通常の左から右への横スクロール */
+            /* 現代的で静かなプレーン・ゴシック体 */
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Segoe UI", Meiryo, sans-serif;
+            overflow-x: hidden; /* 横スクロールを完全に禁止 */
+            overflow-y: auto;   /* 通常の縦スクロールを許可 */
         }
 
-        /* 2. 背景画像を画面内に「全体表示」して「固定＆リピート」する土台 */
-        .wrapper {
-            display: flex;
-            flex-direction: row; /* 左から右へ要素を並べる */
+        /* 2. 背景画像を画面に「全体表示」して「完全固定」する設定 */
+        .background-fixed {
+            position: fixed; /* 画面に完全に固定（スクロールしても動かない） */
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            width: max-content;
+            z-index: -1; /* 文字の後ろに配置 */
             
-            /* 背景画像の設定 */
             background-image: url('photo3.jpg');
-            background-attachment: fixed; /* 画像を画面に固定 */
             background-position: center;
-            background-repeat: repeat;    /* 比率が合わない部分は繰り返して埋める */
-            background-size: contain;      /* 画像を拡大せず、全体が画面に入るように縮小表示 */
+            background-repeat: repeat;    /* 比率が合わない隙間は繰り返して埋める */
+            background-size: contain;      /* 画像を拡大せず、全体が画面に収まるように表示 */
         }
 
-        /* 3. テキストが通る横長の道 */
+        /* 3. 文字が通る縦長のコンテナ */
         .story-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column; /* 上から下へ並べる */
             align-items: center;
-            height: 100vh;
-            padding: 0 15vw; 
+            padding: 30vh 10vw; /* 上下に大きな余白を作って、スクロールの「間」を確保 */
             box-sizing: border-box;
         }
 
-        /* 4. 【重要】左から右へ、1行目から順に読み進めるための縦書き設定 */
+        /* 4. 文字のスタイル：控えめで、行間が広いモダンなゴシック */
         .text-block {
-            writing-mode: vertical-lr; /* 「lr」にすることで、左から右へ行が進む縦書きになります */
-            color: rgba(255, 255, 255, 0.55); /* 控えめで薄い文字 */
-            font-size: 1.15rem; /* 小さめ、ゴシック体 */
+            color: rgba(255, 255, 255, 0.6); /* 控えめで薄い文字（白の60%） */
+            font-size: 1.1rem; /* 小さめで品のあるサイズ */
             font-weight: 500;
-            letter-spacing: 0.35em;
-            line-height: 2.5; /* ゆったりとした行間 */
-            height: 60%; /* 上下に大きな余白 */
-            margin-right: 25vw; /* 塊の右側に大きな「間」を作る */
+            letter-spacing: 0.2em; /* 文字の間隔をゆったり */
+            line-height: 2.3;      /* 行間を広く取って読みやすく */
+            max-width: 600px;      /* 横幅が広がりすぎないように制限 */
+            width: 100%;
+            margin-bottom: 40vh;   /* 次の文章の塊までに、画面半分以上の大きな余白（間）を作る */
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.6); /* 写真に重なっても読めるように薄い影 */
         }
 
         .text-block p {
             margin: 0;
+            margin-bottom: 1.5em; /* 段落ごとの隙間 */
             text-indent: 1em; /* 行頭1文字下げ */
         }
         
@@ -65,27 +66,30 @@
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="story-container">
+    <!-- 固定背景（スクロールしてもここはずっと動きません） -->
+    <div class="background-fixed"></div>
 
-            <!-- 【ここからスタート（画面の一番左）】 -->
-            <!-- 視線は、この塊の「左端の1行目」からスタートして、右へ右へと読み進めます -->
-            <div class="text-block">
-                <p class="no-indent">どこへ行っても、結局は自分自身を引き摺り回しているだけに過ぎないのだ、という諦念が常に足元にへばりついている。</p>
-                <p>どれほど遠くの島へ逃れようとも、あるいはどれほど crowded な日常から距離を置こうとも、耳鳴りのように響く内省のスイッチは切ることができない。ある種の人間にとって、旅とは移動の快楽ではなく、むしろ日常という「舞台装置」を強制的に剥ぎ取られたときに露呈する、自らの身勝手な抒情性と対峙するための、極めて孤独な儀式なのである。</p>
-            </div>
+    <!-- スクールするテキストエリア -->
+    <div class="story-container">
 
-            <!-- 【スクロールすると右から出てくる2つ目の塊】 -->
-            <div class="text-block">
-                <p>世間はすぐに「経験」という言葉を都合よく使う。何年そこに居ただとか、何を成し遂げただとか、そういった数値化できる足跡だけを拾い集めては、もっともらしい顔をして「論」を組み立てる。しかし、本当に肉体を震わせた決定的な瞬間というのは、得てしてそのような文脈の外部にある。例えば、見知らぬ波止場でふと鼻を掠めた、名前も知らぬ植物の腐臭。あるいは、他人の視線が完全に途切れた瞬間にだけ訪れる、奇妙なほど冷徹な自己肯定。そうした「無駄な断片」こそが、私の輪郭を決定づけている。</p>
-            </div>
-
-            <!-- 【一番最後（右奥）の塊】 -->
-            <div class="text-block">
-                <p>結局のところ、我々が「風景」と呼んでいるものは、網膜に映る光学的リアリティなどではなく、その実、己の内部に澱のように溜まった記憶の組み替え作業に過ぎないのではないか。だからこそ、この突き抜けた蒼さを前にして、私はただ圧倒される代わりに、かつて踏み外しそうになった細い路地の傾斜を思い出している。意味など最初からどこにも落ちていない。落ちていないからこそ、私はそれを断定しなければならないのだ。この静寂が、かつて誰かが吐き捨てた嘘の裏返しであるということを。</p>
-            </div>
-
+        <!-- 最初の塊 -->
+        <div class="text-block">
+            <p class="no-indent">どこへ行っても、結局は自分自身を引き摺り回しているだけに過ぎないのだ、という諦念が常に足元にへばりついている。</p>
+            <p>どれほど遠くの島へ逃れようとも、あるいはどれほど crowded な日常から距離を置こうとも、耳鳴りのように響く内省のスイッチは切ることができない。ある種の人間にとって、旅とは移動の快楽ではなく、むしろ日常という「舞台装置」を強制的に剥ぎ取られたときに露呈する、自らの身勝手な抒情性と対峙するための、極めて孤独な儀式なのである。</p>
         </div>
+
+        <!-- スクロールすると下からせり上がってくる2つ目の塊 -->
+        <div class="text-block">
+            <p>世間はすぐに「経験」という言葉を都合よく使う。何年そこに居ただとか、何を成し遂げただとか、そういった数値化できる足跡だけを拾い集めては、もっともらしい顔をして「論」を組み立てる。しかし、本当に肉体を震わせた決定的な瞬間というのは、得てしてそのような文脈の外部にある。</p>
+            <p>例えば、見知らぬ波止場でふと鼻を掠めた、名前も知らぬ植物の腐臭。あるいは、他人の視線が完全に途切れた瞬間にだけ訪れる、奇妙なほど冷徹な自己肯定。そうした「無駄な断片」こそが、私の輪郭を決定づけている。</p>
+        </div>
+
+        <!-- 最後の塊 -->
+        <div class="text-block">
+            <p>結局のところ、我々が「風景」と呼んでいるものは、網膜に映る光学的リアリティなどではなく、その実、己の内部に澱のように溜まった記憶の組み替え作業に過ぎないのではないか。</p>
+            <p>だからこそ、この突き抜けた蒼さを前にして、私はただ圧倒される代わりに、かつて踏み外しそうになった細い路地の傾斜を思い出している。意味など最初からどこにも落ちていない。落ちていないからこそ、私はそれを断定しなければならないのだ。この静寂が、かつて誰かが吐き捨てた嘘の裏返しであるということを。</p>
+        </div>
+
     </div>
 
 </body>
