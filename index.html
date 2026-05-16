@@ -3,80 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>波がひたす
-        　　時が満たす
-    　　　　 ゆっくりと日時計
-        　　 潮の暦日</title>
+    <title>Amami Oshima - 横スクロール</title>
     <style>
-        body, html {
+        /* 全体の設定：縦スクロールを禁止し、横スクロールにする */
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
             background-color: #000;
-            font-family: "Yu Mincho", "YuMincho", "MS Mincho", serif; /* 縦書きには明朝体が合います */
+            font-family: "Yu Mincho", "YuMincho", "MS Mincho", serif;
+            overflow-y: hidden; /* 縦スクロールを消す */
+            overflow-x: auto;   /* 横スクロールを許可 */
         }
 
-        /* セクション設定：写真をフル画面固定 */
+        /* 画面いっぱいの横長コンテナ */
+        .wrapper {
+            display: flex;
+            flex-direction: row; /* 横に並べる */
+            height: 100vh;
+            width: max-content;  /* 中身の分だけ横幅を広げる */
+        }
+
+        /* 各写真セクションの設定 */
         .section {
             position: relative;
             height: 100vh;
-            width: 100%;
-            background-attachment: fixed;
+            width: 100vw; /* 1枚ごとに画面幅100%を占有 */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            
+            /* 文字を右側に配置するための設定（ほぼ日風） */
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; 
+            padding-left: 10%; /* 右から左へ進むので、左側に余白を持たせる */
+            box-sizing: border-box;
         }
 
-        /* 背景写真の指定（ファイル名を正確に合わせる） */
+        /* 背景写真（ファイル名を正確に） */
         .bg1 { background-image: url('photo1.jpg'); }
         .bg2 { background-image: url('photo2.jpg'); }
         .bg3 { background-image: url('photo3.jpg'); }
 
-        /* 文字の設定：縦書き・大きく・薄く */
+        /* 文字の設定：ほぼ日風（縦書き・薄く・右から左へ） */
         .content {
-            writing-mode: vertical-rl; /* 縦書き（右から左へ） */
-            text-orientation: mixed;
-            color: rgba(255, 255, 255, 0.6); /* 白の60%の薄さ */
-            font-size: 3.5rem; /* かなり大きめ */
+            writing-mode: vertical-rl; /* 縦書き（右から左） */
+            color: rgba(255, 255, 255, 0.6); /* 白の60%（薄め） */
+            font-size: 2.5rem; /* 大きめ */
             font-weight: bold;
-            letter-spacing: 0.5em; /* 文字の間隔を広げてゆったりと */
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* 視認性確保のための影 */
-            height: 80%; /* 縦の表示範囲 */
+            letter-spacing: 0.4em; /* 文字の間隔を広げる */
+            line-height: 2;        /* 行間を広げる */
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+            height: 70%; /* 縦の表示領域 */
         }
 
-        /* スマホ対応 */
-        @media (max-width: 768px) {
-            .section { background-attachment: scroll; } /* スマホは固定解除がスムーズ */
-            .content {
-                font-size: 2.2rem;
-                letter-spacing: 0.3em;
-            }
-        }
+        /* マウスホイールで横スクロールさせるための調整（PC用） */
+        /* ※最近のブラウザやトラックパッドならこれなしでも横に動きます */
     </style>
 </head>
 <body>
 
-    <div class="section bg1">
-        <div class="content">
-            波がひたす
-        　　 時が満たす
-    　　　　  ゆっくりと日時計
-        　　 潮の暦日
-        </div>
-    </div>
+    <div class="wrapper">
 
-    <div class="section bg2">
-        <div class="content">
-            kakeroma, romanesque
+        <!-- 1枚目（ここからスタート） -->
+        <div class="section bg1">
+            <div class="content">
+                <p>静寂の島、奄美。</p>
+                <p>光と影が織りなす、最初の景色。</p>
+            </div>
         </div>
-    </div>
 
-    <div class="section bg3">
-        <div class="content">
-            揺れている、ぬるい浅い水。
+        <!-- 2枚目（右にスクロールすると現れる） -->
+        <div class="section bg2">
+            <div class="content">
+                <p>深い森の奥へ。</p>
+                <p>都会の音を忘れる時間。</p>
+            </div>
         </div>
+
+        <!-- 3枚目 -->
+        <div class="section bg3">
+            <div class="content">
+                <p>ではここなのか
+                　　この島なのか
+                    脳漿の中を泳ぎ回って
+                    一瞬見事に輝き渡る
+                    千匹の疑問の稚魚の群棲
+                    風が立ち上がり
+                    椰子の葉がざわざわ
+                    ここなのか</p>
+                <p></p>
+            </div>
+        </div>
+
     </div>
 
 </body>
